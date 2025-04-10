@@ -1,0 +1,146 @@
+    all 0.3s ease;
+    cursor: pointer;
+}
+
+.custom-select:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(137, 207, 240, 0.3);
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, #FF9BE8, #89CFF0);
+    color: white;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 2rem auto;
+    animation: pulse 2s infinite;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+}
+
+.story-container {
+    display: none;
+    animation: fadeIn 1s;
+}
+
+.story-title {
+    font-size: 2rem;
+    color: #512B81;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 1s;
+}
+
+.story-paragraph {
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    opacity: 0;
+}
+
+.story-emoji {
+    font-size: 1.5rem;
+    margin: 0 0.2rem;
+    vertical-align: middle;
+}
+
+.new-story-btn {
+    background: linear-gradient(45deg, #89CFF0, #FCFF5D);
+    color: #512B81;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 2rem auto;
+}
+
+.new-story-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+}
+
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: #512B81;
+    font-size: 0.9rem;
+}
+
+/* Animación para el loading entre la generación de historia */
+.loading {
+    display: none;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.loading-dots {
+    display: inline-block;
+}
+
+.loading-dots span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #512B81;
+    margin: 0 5px;
+}
+
+.loading-dots span:nth-child(1) {
+    animation: bounce 1s infinite 0s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation: bounce 1s infinite 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation: bounce 1s infinite 0.4s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .app-title {
+        font-size: 2rem;
+    }
+
+    .character-emoji {
+        font-size: 4rem;
+    }
+
+    .character-name {
+        font-size: 1.5rem;
+    }
+
+    .story-title {
+        font-size: 1.8rem;
+    }
+}
