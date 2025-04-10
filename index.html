@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historias de la Enfermera Panda y el Doctor Mono</title>
+    <!-- Tailwind CSS desde jsDelivr -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- FontAwesome desde jsDelivr -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Twemoji -->
+    <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #FF9BE8;
+            --secondary-color: #89CFF0;
+            --tertiary-color: #FCFF5D;
+            --accent-color: #FF6B6B;
+            --background-gradient: linear-gradient(45deg, #FFD6FF, #E7C6FF, #B8C0FF, #C8F7FF);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--background-gradient);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Baloo 2', cursive;
+        }
+        
+        /* Animaciones generales */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shine {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes rainbow-border {
+            0% { border-color: #ff0000; }
+            14% { border-color: #ff7f00; }
+            28% { border-color: #ffff00; }
+            42% { border-color: #00ff00; }
+            56% { border-color: #0000ff; }
+            70% { border-color: #4b0082; }
+            84% { border-color: #9400d3; }
+            100% { border-color: #ff0000; }
+        }
+        
+        /* Estilos específicos de la aplicación */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .app-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: #512B81;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(31, 38, 135, 0.3);
+        }
+        
+        .rainbow-border {
+            animation: rainbow-border 5s linear infinite;
+        }
+        
+        .character-card {
+            text-align: center;
+            padding: 1.5rem;
+            animation: fadeIn 0.5s, float 3s infinite ease-in-out;
+        }
+        
+        .character-card:hover .character-emoji {
+            animation: bounce 1s infinite ease-in-out;
+        }
+        
+        .character-emoji {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .character-emoji:hover {
+            transform: scale(1.2);
+        }
+        
+        .character-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #512B81;
+            margin-bottom: 0.5rem;
+        }
+        
+        .character-quote {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .form-container {
+            animation: fadeIn 1s 0.3s both;
+        }
+        
+        .select-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .select-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #512B81;
+        }
+        
+        .custom-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            background-color: white;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .custom-select:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .custom-select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(137, 207, 240, 0.3);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #FF9BE8, #89CFF0);
+            color: white;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 2rem auto 1rem auto;
+            animation: pulse 2s infinite;
+        }
+        
+        .random-btn {
+            background: linear-gradient(45deg, #FCFF5D, #FF6B6B);
+            color: #512B81;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 0 auto 2rem auto;
+        }
+        
+        .submit-btn:hover, .random-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+            animation: shine 1.5s infinite;
+        }
+        
+        .story-container {
+            display: none;
+            animation: fadeInUp 1s;
+        }
+        
+        .story-title {
+            font-size: 2rem;
+            color: #512B81;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s;
+        }
+        
+        .story-paragraph {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeInUp 0.5s forwards;
+        }
+        
+        .story-emoji {
+            font-size: 1.5rem;
+            margin: 0 0.2rem;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        
+        .new-story-btn {
+            background: linear-gradient(45deg, #89CFF0, #FCFF5D);
+            color: #512B81;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 2rem auto;
+        }
+        
+        .new-story-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #512B81;
+            font-size: 0.9rem;
+            animation: fadeIn 1s 1s both;
+        }
+        
+        /* Animación para el loading entre la generación de historia */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #512B81;
+            margin: 0 5px;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation: bounce 1s infinite 0s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation: bounce 1s infinite 0.2s;
+        }
+        
+        .loading-dots span:nth-child(3) {
+            animation: bounce 1s infinite 0.4s;
+        }
+        
+        .character-floater {
+            position: fixed;
+            font-size: 3rem;
+            z-index: 100;
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        .panda-floater {
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .monkey-floater {
+            top: 20px;
+            left: 20px;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        .character-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 2rem;
+            }
+            
+            .character-emoji {
+                font-size: 4rem;
+            }
+            
+            .character-name {
+                font-size: 1.5rem;
+            }
+            
+            .story-title {
+                font-size: 1.8rem;
+            }
+            
+            .character-floater {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="app-title">Historias de la Enfermera Panda y el Doctor Mono</h1>
+        
+        <!-- Flotadores de personajes -->
+        <div class="character-floater panda-floater">🐼</div>
+        <div class="character-floater monkey-floater">🐒</div>
+        
+        <!-- Sección de personajes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="character-card card rainbow-border" style="animation-delay: 0s;">
+                <div class="character-emoji">🐼</div>
+                <h2 class="character-name">Enfermera Panda</h2>
+                <p class="character-quote">"¡Con una sonrisa y un abrazo, cualquier dolor se va volando!"</p>
+                <p class="mt-4">La Enfermera Panda es dulce y cariñosa. Siempre sabe cómo hacer sentir mejor a sus pacientes con su paciencia infinita y su bolsa llena de vendas coloridas.</p>
+            </div>
+            
+            <div class="character-card card rainbow-border" style="animation-delay: 0.2s;">
+                <div class="character-emoji">🐒</div>
+                <h2 class="character-name">Doctor Mono</h2>
+                <p class="character-quote">"¡La mejor medicina es reír tres veces al día!"</p>
+                <p class="mt-4">El Doctor Mono es juguetón y divertido. Con sus chistes y bromas hace que hasta los tratamientos más aburridos se conviertan en aventuras emocionantes.</p>
+            </div>
+        </div>
+        
+        <!-- Formulario de personalización -->
+        <div class="form-container card">
+            <h2 class="text-xl md:text-2xl font-bold text-center mb-6 text-indigo-900">¡Crea tu propia historia!</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="select-group">
+                    <label for="childName" class="select-label">Nombre del niño/a (opcional)</label>
+                    <input type="text" id="childName" class="custom-select" placeholder="Deja en blanco para no incluir un nombre">
+                </div>
+                
+                <div class="select-group">
+                    <label for="place" class="select-label">Lugar de la historia</label>
+                    <select id="place" class="custom-select">
+                        <option value="hospital">Hospital 🏥</option>
+                        <option value="parque">Parque 🌳</option>
+                        <option value="escuela">Escuela 🏫</option>
+                        <option value="playa">Playa 🏖️</option>
+                        <option value="bosque">Bosque 🌲</option>
+                        <option value="zoo">Zoológico 🦁</option>
+                        <option value="granja">Granja 🐄</option>
+                        <option value="casa">Casa 🏠</option>
+                        <option value="montaña">Montaña ⛰️</option>
+                        <option value="espacio">Espacio exterior 🚀</option>
+                        <option value="circo">Circo 🎪</option>
+                        <option value="biblioteca">Biblioteca 📚</option>
+                        <option value="acuario">Acuario 🐠</option>
+                        <option value="castillo">Castillo 🏰</option>
+                        <option value="isla">Isla tropical 🏝️</option>
+                        <option value="submarino">Submarino 🔎</option>
+                    </select>
+                </div>
+                
+                <div class="select-group">
+                    <label for="problem" class="select-label">Problema a resolver</label>
+                    <select id="problem" class="custom-select">
+                        <option value="resfriado">Resfriado 🤧</option>
+                        <option value="miedo">Miedo a la oscuridad 🌙</option>
+                        <option value="herida">Herida en la rodilla 🩹</option>
+                        <option value="tristeza">Tristeza 😢</option>
+                        <option value="pesadilla">Pesadilla 😱</option>
+                        <option value="soledad">Soledad 🧸</option>
+                        <option value="compartir">No querer compartir 🤲</option>
+                        <option value="dientes">Dolor de dientes 🦷</option>
+                        <option value="berrinche">Berrinche 😤</option>
+                        <option value="comida">No querer comer verduras 🥦</option>
+                        <option value="perdido">Estar perdido 🗺️</option>
+                        <option value="amistad">Hacer nuevos amigos 👋</option>
+                        <option value="deporte">Miedo a intentar un nuevo deporte 🏀</option>
+                        <option value="inyeccion">Miedo a las inyecciones 💉</option>
+                        <option value="examenes">Nervios por los exámenes 📝</option>
+                        <option value="timidez">Timidez 🙈</option>
+                    </select>
+                </div>
+                
+                <div class="select-group">
+                    <label for="friend" class="select-label">Amigo que aparece</label>
+                    <select id="friend" class="custom-select">
+                        <option value="leon">León 🦁</option>
+                        <option value="jirafa">Jirafa 🦒</option>
+                        <option value="elefante">Elefante 🐘</option>
+                        <option value="tigre">Tigre 🐯</option>
+                        <option value="conejo">Conejo 🐰</option>
+                        <option value="tortuga">Tortuga 🐢</option>
+                        <option value="mariposa">Mariposa 🦋</option>
+                        <option value="delfin">Delfín 🐬</option>
+                        <option value="buho">Búho 🦉</option>
+                        <option value="perro">Perro 🐶</option>
+                        <option value="gato">Gato 🐱</option>
+                        <option value="dragon">Dragón 🐲</option>
+                        <option value="koala">Koala 🐨</option>
+                        <option value="unicornio">Unicornio 🦄</option>
+                        <option value="zorro">Zorro 🦊</option>
+                        <option value="pulpo">Pulpo 🐙</option>
+                    </select>
+                </div>
+                
+                <div class="select-group">
+                    <label for="weather" class="select-label">Clima de la historia</label>
+                    <select id="weather" class="custom-select">
+                        <option value="soleado">Soleado ☀️</option>
+                        <option value="lluvia">Lluvioso 🌧️</option>
+                        <option value="nieve">Nevado ❄️</option>
+                        <option value="tormenta">Tormenta eléctrica ⚡</option>
+                        <option value="arcoiris">Arcoíris 🌈</option>
+                        <option value="niebla">Niebla 🌫️</option>
+                        <option value="viento">Ventoso 🌪️</option>
+                        <option value="calor">Mucho calor 🔥</option>
+                        <option value="estrellado">Noche estrellada ✨</option>
+                        <option value="nublado">Nublado ☁️</option>
+                        <option value="granizo">Granizo 🧊</option>
+                        <option value="aurora">Aurora boreal 🌌</option>
+                    </select>
+                </div>
+                
+                <div class="select-group">
+                    <label for="magicObject" class="select-label">Objeto mágico</label>
+                    <select id="magicObject" class="custom-select">
+                        <option value="varita">Varita mágica ✨</option>
+                        <option value="pocion">Poción burbujeante 🧪</option>
+                        <option value="mapa">Mapa del tesoro 🗺️</option>
+                        <option value="espejo">Espejo encantado 🪞</option>
+                        <option value="lampara">Lámpara maravillosa 🪔</option>
+                        <option value="libro">Libro de hechizos 📕</option>
+                        <option value="llave">Llave dorada 🔑</option>
+                        <option value="reloj">Reloj que detiene el tiempo ⏰</option>
+                        <option value="semilla">Semilla que crece instantáneamente 🌱</option>
+                        <option value="baston">Bastón de nubes ☁️</option>
+                        <option value="alfombra">Alfombra voladora 🧞</option>
+                        <option value="caramelo">Caramelo de superpoderes 🍬</option>
+                        <option value="guante">Guante que transforma 🧤</option>
+                        <option value="amuleto">Amuleto de la suerte 🔮</option>
+                        <option value="sombrero">Sombrero parlante 🎩</option>
+                        <option value="anillo">Anillo de invisibilidad 💍</option>
+                    </select>
+                </div>
+                
+                <div class="select-group">
+                    <label for="ending" class="select-label">Final de la historia</label>
+                    <select id="ending" class="custom-select">
+                        <option value="fiesta">Fiesta de celebración 🎉</option>
+                        <option value="aprendizaje">Lección aprendida 📝</option>
+                        <option value="amistad">Nueva amistad 🤝</option>
+                        <option value="aventura">Nueva aventura 🧭</option>
+                        <option value="regalo">Regalo sorpresa 🎁</option>
+                        <option value="cancion">Canción alegre 🎵</option>
+                        <option value="abrazo">Abrazo grupal 🫂</option>
+                        <option value="estrella">Deseo a una estrella ⭐</option>
+                        <option value="arcoiris">Arcoíris mágico 🌈</option>
+                        <option value="dormir">Dulces sueños 💤</option>
+                        <option value="desfile">Desfile de celebración 🎪</option>
+                        <option value="picnic">Picnic mágico 🧺</option>
+                        <option value="medalla">Medalla de valor 🏅</option>
+                        <option value="viaje">Viaje en globo 🎈</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button id="generateBtn" class="submit-btn">¡Generar Historia Mágica!</button>
+            <button id="randomBtn" class="random-btn">¡Historia Aleatoria!</button>
+        </div>
+        
+        <!-- Loading indicator -->
+        <div class="loading" id="loadingIndicator">
+            <p class="font-bold text-indigo-900 mb-3">Creando una historia maravillosa con la Enfermera Panda y el Doctor Mono...</p>
+            <div class="loading-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Contenedor de la historia -->
+        <div class="story-container card" id="storyContainer">
+            <h2 class="story-title" id="storyTitle">Título de la Historia</h2>
+            <div id="storyContent"></div>
+            <button id="newStoryBtn" class="new-story-btn">¡Crear otra historia!</button>
+        </div>
+        
+        <footer class="footer">
+            <p>© 2025, Historias de la Enfermera Panda y el Doctor Mono | Todos los derechos reservados DR GÓMEZ</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Inicializar Twemoji después de que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar Twemoji
+            twemoji.parse(document.body, {
+                folder: 'svg',
+                ext: '.svg'
+            });
+            
+            // Variables y elementos
+            const generateBtn = document.getElementById('generateBtn');
+            const randomBtn = document.getElementById('randomBtn');
+            const newStoryBtn = document.getElementById('newStoryBtn');
+            const formContainer = document.querySelector('.form-container');
+            const storyContainer = document.getElementById('storyContainer');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const storyTitle = document.getElementById('storyTitle');
+            const storyContent = document.getElementById('storyContent');
+            
+            // Lugares para la historia
+            const places = {
+                hospital: { name: "Hospital", emoji: "🏥" },
+                parque: { name: "Parque", emoji: "🌳" },
+                escuela: { name: "Escuela", emoji: "🏫" },
+                playa: { name: "Playa", emoji: "🏖️" },
+                bosque: { name: "Bosque", emoji: "🌲" },
+                zoo: { name: "Zoológico", emoji: "🦁" },
+                granja: { name: "Granja", emoji: "🐄" },
+                casa: { name: "Casa", emoji: "🏠" },
+                montaña: { name: "Montaña", emoji: "⛰️" },
+                espacio: { name: "Espacio Exterior", emoji: "🚀" },
+                circo: { name: "Circo", emoji: "🎪" },
+                biblioteca: { name: "Biblioteca", emoji: "📚" },
+                acuario: { name: "Acuario", emoji: "🐠" },
+                castillo: { name: "Castillo", emoji: "🏰" },
+                isla: { name: "Isla Tropical", emoji: "🏝️" },
+                submarino: { name: "Submarino", emoji: "🔎" }
+            };
+            
+            // Problemas para la historia
+            const problems = {
+                resfriado: { desc: "resfriado", emoji: "🤧" },
+                miedo: { desc: "miedo a la oscuridad", emoji: "🌙" },
+                herida: { desc: "herida en la rodilla", emoji: "🩹" },
+                tristeza: { desc: "tristeza", emoji: "😢" },
+                pesadilla: { desc: "pesadilla", emoji: "😱" },
+                soledad: { desc: "soledad", emoji: "🧸" },
+                compartir: { desc: "no querer compartir", emoji: "🤲" },
+                dientes: { desc: "dolor de dientes", emoji: "🦷" },
+                berrinche: { desc: "berrinche", emoji: "😤" },
+                comida: { desc: "no querer comer verduras", emoji: "🥦" },
+                perdido: { desc: "estar perdido", emoji: "🗺️" },
+                amistad: { desc: "hacer nuevos amigos", emoji: "👋" },
+                deporte: { desc: "miedo a intentar un nuevo deporte", emoji: "🏀" },
+                inyeccion: { desc: "miedo a las inyecciones", emoji: "💉" },
+                examenes: { desc: "nervios por los exámenes", emoji: "📝" },
+                timidez: { desc: "timidez", emoji: "🙈" }
+            };
+            
+            // Amigos para la historia
+            const friends = {
+                leon: { name: "León", emoji: "🦁" },
+                jirafa: { name: "Jirafa", emoji: "🦒" },
+                elefante: { name: "Elefante", emoji: "🐘" },
+                tigre: { name: "Tigre", emoji: "🐯" },
+                conejo: { name: "Conejo", emoji: "🐰" },
+                tortuga: { name: "Tortuga", emoji: "🐢" },
+                mariposa: { name: "Mariposa", emoji: "🦋" },
+                delfin: { name: "Delfín", emoji: "🐬" },
+                buho: { name: "Búho", emoji: "🦉" },
+                perro: { name: "Perro", emoji: "🐶" },
+                gato: { name: "Gato", emoji: "🐱" },
+                dragon: { name: "Dragón", emoji: "🐲" },
+                koala: { name: "Koala", emoji: "🐨" },
+                unicornio: { name: "Unicornio", emoji: "🦄" },
+                zorro: { name: "Zorro", emoji: "🦊" },
+                pulpo: { name: "Pulpo", emoji: "🐙" }
+            };
+            
+            // Climas para la historia
+            const weathers = {
+                soleado: { desc: "soleado", emoji: "☀️" },
+                lluvia: { desc: "lluvioso", emoji: "🌧️" },
+                nieve: { desc: "nevado", emoji: "❄️" },
+                tormenta: { desc: "con una tormenta eléctrica", emoji: "⚡" },
+                arcoiris: { desc: "con un hermoso arcoíris", emoji: "🌈" },
+                niebla: { desc: "con niebla", emoji: "🌫️" },
+                viento: { desc: "ventoso", emoji: "🌪️" },
+                calor: { desc: "con mucho calor", emoji: "🔥" },
+                estrellado: { desc: "con un cielo estrellado", emoji: "✨" },
+                nublado: { desc: "nublado", emoji: "☁️" },
+                granizo: { desc: "con granizo", emoji: "🧊" },
+                aurora: { desc: "con una aurora boreal", emoji: "🌌" }
+            };
+            
+            // Objetos mágicos para la historia
+            const magicObjects = {
+                varita: { name: "varita mágica", emoji: "✨" },
+                pocion: { name: "poción burbujeante", emoji: "🧪" },
+                mapa: { name: "mapa del tesoro", emoji: "🗺️" },
+                espejo: { name: "espejo encantado", emoji: "🪞" },
+                lampara: { name: "lámpara maravillosa", emoji: "🪔" },
+                libro: { name: "libro de hechizos", emoji: "📕" },
+                llave: { name: "llave dorada", emoji: "🔑" },
+                reloj: { name: "reloj que detiene el tiempo", emoji: "⏰" },
+                semilla: { name: "semilla que crece instantáneamente", emoji: "🌱" },
+                baston: { name: "bastón de nubes", emoji: "☁️" },
+                alfombra: { name: "alfombra voladora", emoji: "🧞" },
+                caramelo: { name: "caramelo de superpoderes", emoji: "🍬" },
+                guante: { name: "guante que transforma", emoji: "🧤" },
+                amuleto: { name: "amuleto de la suerte", emoji: "🔮" },
+                sombrero: { name: "sombrero parlante", emoji: "🎩" },
+                anillo: { name: "anillo de invisibilidad", emoji: "💍" }
+            };
+            
+            // Finales para la historia
+            const endings = {
+                fiesta: { desc: "con una fiesta de celebración", emoji: "🎉" },
+                aprendizaje: { desc: "con una importante lección aprendida", emoji: "📝" },
+                amistad: { desc: "con una nueva amistad", emoji: "🤝" },
+                aventura: { desc: "preparándose para una nueva aventura", emoji: "🧭" },
+                regalo: { desc: "recibiendo un regalo sorpresa", emoji: "🎁" },
+                cancion: { desc: "cantando una canción alegre", emoji: "🎵" },
+                abrazo: { desc: "con un abrazo grupal", emoji: "🫂" },
+                estrella: { desc: "pidiendo un deseo a una estrella", emoji: "⭐" },
+                arcoiris: { desc: "con un arcoíris mágico", emoji: "🌈" },
+                dormir: { desc: "yendo a dormir con dulces sueños", emoji: "💤" },
+                desfile: { desc: "con un desfile de celebración", emoji: "🎪" },
+                picnic: { desc: "disfrutando de un picnic mágico", emoji: "🧺" },
+                medalla: { desc: "recibiendo una medalla de valor", emoji: "🏅" },
+                viaje: { desc: "emprendiendo un viaje en globo", emoji: "🎈" }
+            };
+            
+            // Títulos aleatorios para las historias
+            const storyTitles = [
+                "La Gran Aventura de Curación",
+                "Un Día Especial con Panda y Mono",
+                "La Misión de Ayuda Mágica",
+                "El Problema Especial",
+                "El Rescate Increíble",
+                "Una Lección para Recordar",
+                "La Sorpresa del Doctor Mono",
+                "El Plan Secreto de la Enfermera Panda",
+                "Un Momento de Valentía",
+                "El Misterio del Día Extraño",
+                "La Solución Inesperada",
+                "Aventura en el [LUGAR]",
+                "El Día que [PROBLEMA] Desapareció",
+                "Un Amigo Especial Aparece",
+                "La Magia del [OBJETO]",
+                "El [CLIMA] Día de Amistad",
+                "El Secreto del [LUGAR] Encantado",
+                "Cuando [AMIGO] Conoció al Doctor Mono",
+                "El Regalo de la Enfermera Panda",
+                "La Expedición Mágica"
+            ];
+            
+            // Plantillas para párrafos de las historias
+            const storyTemplates = [
+                // Introducción
+                [
+                    "Era un día [CLIMA] en el [LUGAR]. La Enfermera Panda [PANDA_EMOJI] y el Doctor Mono [MONO_EMOJI] estaban [ACTIVIDAD_INICIAL] cuando de repente se encontraron con [AMIGO_EMOJI] el [AMIGO].",
+                    "En el [LUGAR] [LUGAR_EMOJI], la Enfermera Panda [PANDA_EMOJI] organizaba sus vendas de colores mientras el Doctor Mono [MONO_EMOJI] practicaba sus mejores chistes. El día estaba [CLIMA] y prometía ser especial.",
+                    "[NOMBRE_NIÑO]Había una vez, en un [LUGAR] [LUGAR_EMOJI] muy especial, donde la Enfermera Panda [PANDA_EMOJI] y el Doctor Mono [MONO_EMOJI] ayudaban a todos los que lo necesitaban. Era un día particularmente [CLIMA].",
+                    "El [LUGAR] [LUGAR_EMOJI] brillaba especialmente [CLIMA] ese día. La Enfermera Panda [PANDA_EMOJI] y el Doctor Mono [MONO_EMOJI] acababan de terminar de desayunar cuando escucharon un ruido extraño."
+                ],
+                
+                // Desarrollo del problema
+                [
+                    "De pronto, se dieron cuenta de que había un problema: [PROBLEMA_DESC] [PROBLEMA_EMOJI]. [AMIGO_EMOJI] El [AMIGO] estaba muy preocupado y no sabía qué hacer.",
+                    "Mientras conversaban, notaron que algo no estaba bien. El problema de [PROBLEMA_DESC] [PROBLEMA_EMOJI] estaba causando dificultades, y necesitaban encontrar una solución rápidamente.",
+                    "\"¡Oh no!\", exclamó la Enfermera Panda [PANDA_EMOJI]. \"Parece que tenemos un caso de [PROBLEMA_DESC] [PROBLEMA_EMOJI] y necesitamos actuar rápido\". El Doctor Mono [MONO_EMOJI] asintió seriamente (algo raro en él).",
+                    "[NOMBRE_NIÑO]De repente, todos se dieron cuenta del problema: [PROBLEMA_DESC] [PROBLEMA_EMOJI] estaba afectando a todos en el [LUGAR]. La Enfermera Panda [PANDA_EMOJI] sacó su libreta especial mientras el Doctor Mono [MONO_EMOJI] observaba con atención."
+                ],
+                
+                // Aparición del objeto mágico
+                [
+                    "La Enfermera Panda [PANDA_EMOJI] recordó que tenía un objeto especial que podría ayudar: ¡un [OBJETO_MAGICO] [OBJETO_EMOJI]! \"Esto nos ayudará\", dijo con una sonrisa.",
+                    "\"¡Tengo una idea!\", exclamó el Doctor Mono [MONO_EMOJI] dando saltos de emoción. De su mochila sacó un [OBJETO_MAGICO] [OBJETO_EMOJI] que brillaba con luz propia.",
+                    "[AMIGO_EMOJI] El [AMIGO] recordó que había encontrado un [OBJETO_MAGICO] [OBJETO_EMOJI] durante su caminata matutina. \"¿Creen que esto pueda ayudarnos?\" preguntó tímidamente.",
+                    "Justo cuando la situación parecía complicarse, [NOMBRE_NIÑO]la Enfermera Panda [PANDA_EMOJI] y el Doctor Mono [MONO_EMOJI] se miraron y exclamaron al unísono: \"¡El [OBJETO_MAGICO] [OBJETO_EMOJI]! ¡Esa es la solución!\""
+                ],
+                
+                // Plan y acción
+                [
+                    "\"Tengo un plan\", dijo el Doctor Mono [MONO_EMOJI] con una sonrisa traviesa. \"Usaremos el [OBJETO_MAGICO] [OBJETO_EMOJI] para resolver el problema de [PROBLEMA_DESC] [PROBLEMA_EMOJI]\".",
+                    "La Enfermera Panda [PANDA_EMOJI] reunió a todos y explicó el plan: \"Con este [OBJETO_MAGICO] [OBJETO_EMOJI] y trabajando juntos, podremos solucionar este [PROBLEMA_DESC] [PROBLEMA_EMOJI]\".",
+                    "[NOMBRE_NIÑO]Todos se unieron bajo el liderazgo de la Enfermera Panda [PANDA_EMOJI] y el Doctor Mono [MONO_EMOJI]. Con el [OBJETO_MAGICO] [OBJETO_EMOJI] en mano, se dirigieron hacia el lugar donde el problema de [PROBLEMA_DESC] [PROBLEMA_EMOJI] era más fuerte.",
+                    "\"1, 2, 3... ¡Equipo de ayuda en acción!\", gritaron todos juntos. Con el [AMIGO_EMOJI] [AMIGO] llevando el [OBJETO_MAGICO] [OBJETO_EMOJI], comenzaron su misión para solucionar el [PROBLEMA_DESC] [PROBLEMA_EMOJI]."
+                ],
+                
+                // Resolución
+                [
+                    "Usando sus conocimientos médicos, la Enfermera Panda [PANDA_EMOJI] aplicó el poder del [OBJETO_MAGICO] [OBJETO_EMOJI] mientras el Doctor Mono [MONO_EMOJI] distraía a todos con sus graciosas muecas.",
+                    "El [OBJETO_MAGICO] [OBJETO_EMOJI] comenzó a brillar intensamente. La Enfermera Panda [PANDA_EMOJI] sostuvo la mano de [AMIGO_EMOJI] el [AMIGO] mientras el Doctor Mono [MONO_EMOJI] recitaba palabras mágicas de sanación.",
+                    "Con un movimiento suave, el Doctor Mono [MONO_EMOJI] activó el [OBJETO_MAGICO] [OBJETO_EMOJI]. Una luz de colores envolvió el problema de [PROBLEMA_DESC] [PROBLEMA_EMOJI], transformándolo lentamente en algo mucho mejor.",
+                    "[NOMBRE_NIÑO]La Enfermera Panda [PANDA_EMOJI] sostuvo el [OBJETO_MAGICO] [OBJETO_EMOJI] en alto, y junto con el Doctor Mono [MONO_EMOJI] y [AMIGO_EMOJI] el [AMIGO], canalizaron toda su energía positiva para resolver el problema."
+                ],
+                
+                // Final feliz
+                [
+                    "Y así, gracias al trabajo en equipo y al [OBJETO_MAGICO] [OBJETO_EMOJI], lograron resolver el problema de [PROBLEMA_DESC] [PROBLEMA_EMOJI]. Todos celebraron [FINAL_DESC] [FINAL_EMOJI].",
+                    "El problema de [PROBLEMA_DESC] [PROBLEMA_EMOJI] desapareció por completo. [AMIGO_EMOJI] El [AMIGO] no podía creerlo, y abrazó a la Enfermera Panda [PANDA_EMOJI] y al Doctor Mono [MONO_EMOJI]. La aventura terminó [FINAL_DESC] [FINAL_EMOJI].",
+                    "\"¡Lo logramos!\", exclamó el Doctor Mono [MONO_EMOJI] dando volteretas de alegría. La Enfermera Panda [PANDA_EMOJI] sonrió satisfecha mientras guardaba el [OBJETO_MAGICO] [OBJETO_EMOJI] para la próxima aventura. Todos terminaron el día [FINAL_DESC] [FINAL_EMOJI].",
+                    "[NOMBRE_NIÑO]El sol comenzó a ponerse en el [LUGAR] [LUGAR_EMOJI], pero los corazones de todos estaban llenos de alegría. El problema de [PROBLEMA_DESC] [PROBLEMA_EMOJI] ya era cosa del pasado, y la Enfermera Panda [PANDA_EMOJI] y el Doctor Mono [MONO_EMOJI] se despidieron [FINAL_DESC] [FINAL_EMOJI]."
+                ]
+            ];
+            
+            // Actividades iniciales aleatorias
+            const initialActivities = [
+                "revisando sus instrumentos médicos",
+                "desayunando plátanos y bambú",
+                "preparando medicinas especiales",
+                "jugando al escondite",
+                "leyendo libros de medicina divertida",
+                "decorando vendas de colores",
+                "practicando bailes curativos",
+                "ordenando pociones curativas",
+                "inventando chistes medicinales",
+                "plantando flores curativas",
+                "dando la bienvenida a los visitantes",
+                "haciendo ejercicios matutinos"
+            ];
+            
+            // Función para generar una historia aleatoria
+            function generateRandomStory() {
+                // Seleccionar opciones aleatorias
+                const placeSelect = document.getElementById('place');
+                const problemSelect = document.getElementById('problem');
+                const friendSelect = document.getElementById('friend');
+                const weatherSelect = document.getElementById('weather');
+                const magicObjectSelect = document.getElementById('magicObject');
+                const endingSelect = document.getElementById('ending');
+                
+                // Establecer valores aleatorios
+                placeSelect.value = getRandomKey(places);
+                problemSelect.value = getRandomKey(problems);
+                friendSelect.value = getRandomKey(friends);
+                weatherSelect.value = getRandomKey(weathers);
+                magicObjectSelect.value = getRandomKey(magicObjects);
+                endingSelect.value = getRandomKey(endings);
+                
+                // Generar la historia
+                generateStory();
+            }
+            
+            // Función para obtener una clave aleatoria de un objeto
+            function getRandomKey(obj) {
+                const keys = Object.keys(obj);
+                return keys[Math.floor(Math.random() * keys.length)];
+            }
+            
+            // Función para generar la historia
+            function generateStory() {
+                // Mostrar indicador de carga
+                formContainer.style.display = 'none';
+                loadingIndicator.style.display = 'block';
+                storyContainer.style.display = 'none';
+                
+                // Obtener valores seleccionados
+                const childName = document.getElementById('childName').value.trim();
+                const placeKey = document.getElementById('place').value;
+                const problemKey = document.getElementById('problem').value;
+                const friendKey = document.getElementById('friend').value;
+                const weatherKey = document.getElementById('weather').value;
+                const magicObjectKey = document.getElementById('magicObject').value;
+                const endingKey = document.getElementById('ending').value;
+                
+                // Obtener detalles basados en las selecciones
+                const place = places[placeKey];
+                const problem = problems[problemKey];
+                const friend = friends[friendKey];
+                const weather = weathers[weatherKey];
+                const magicObject = magicObjects[magicObjectKey];
+                const ending = endings[endingKey];
+                
+                // Crear la historia
+                setTimeout(() => {
+                    // Generar título aleatorio
+                    let title = storyTitles[Math.floor(Math.random() * storyTitles.length)];
+                    title = title.replace('[LUGAR]', place.name);
+                    title = title.replace('[PROBLEMA]', problem.desc);
+                    title = title.replace('[OBJETO]', magicObject.name);
+                    title = title.replace('[CLIMA]', weather.desc);
+                    title = title.replace('[AMIGO]', friend.name);
+                    
+                    // Establecer el título
+                    storyTitle.textContent = title;
+                    
+                    // Limpiar el contenido anterior
+                    storyContent.innerHTML = '';
+                    
+                    // Añadir nombre del niño si se proporcionó
+                    const nombreNinoText = childName ? `${childName} estaba allí cuando ` : '';
+                    
+                    // Seleccionar plantillas aleatorias para cada sección
+                    const intro = storyTemplates[0][Math.floor(Math.random() * storyTemplates[0].length)];
+                    const problemDev = storyTemplates[1][Math.floor(Math.random() * storyTemplates[1].length)];
+                    const magicObjectAppears = storyTemplates[2][Math.floor(Math.random() * storyTemplates[2].length)];
+                    const plan = storyTemplates[3][Math.floor(Math.random() * storyTemplates[3].length)];
+                    const resolution = storyTemplates[4][Math.floor(Math.random() * storyTemplates[4].length)];
+                    const happyEnding = storyTemplates[5][Math.floor(Math.random() * storyTemplates[5].length)];
+                    
+                    // Actividad inicial aleatoria
+                    const randomActivity = initialActivities[Math.floor(Math.random() * initialActivities.length)];
+                    
+                    // Reemplazar placeholders con valores reales
+                    let story = [intro, problemDev, magicObjectAppears, plan, resolution, happyEnding].map(template => {
+                        let paragraph = template;
+                        paragraph = paragraph.replace('[LUGAR]', place.name);
+                        paragraph = paragraph.replace('[LUGAR_EMOJI]', place.emoji);
+                        paragraph = paragraph.replace('[CLIMA]', weather.desc);
+                        paragraph = paragraph.replace('[PROBLEMA_DESC]', problem.desc);
+                        paragraph = paragraph.replace('[PROBLEMA_EMOJI]', problem.emoji);
+                        paragraph = paragraph.replace('[AMIGO]', friend.name);
+                        paragraph = paragraph.replace('[AMIGO_EMOJI]', friend.emoji);
+                        paragraph = paragraph.replace('[OBJETO_MAGICO]', magicObject.name);
+                        paragraph = paragraph.replace('[OBJETO_EMOJI]', magicObject.emoji);
+                        paragraph = paragraph.replace('[ACTIVIDAD_INICIAL]', randomActivity);
+                        paragraph = paragraph.replace('[FINAL_DESC]', ending.desc);
+                        paragraph = paragraph.replace('[FINAL_EMOJI]', ending.emoji);
+                        paragraph = paragraph.replace('[MONO_EMOJI]', '🐒');
+                        paragraph = paragraph.replace('[PANDA_EMOJI]', '🐼');
+                        paragraph = paragraph.replace('[NOMBRE_NIÑO]', nombreNinoText);
+                        return paragraph;
+                    });
+                    
+                    // Añadir párrafos a la historia con animación de aparición
+                    story.forEach((paragraph, index) => {
+                        const p = document.createElement('p');
+                        p.className = 'story-paragraph';
+                        p.style.animationDelay = `${index * 0.5}s`;
+                        p.innerHTML = paragraph;
+                        storyContent.appendChild(p);
+                    });
+                    
+                    // Ocultar indicador de carga y mostrar la historia
+                    loadingIndicator.style.display = 'none';
+                    storyContainer.style.display = 'block';
+                    
+                    // Ejecutar Twemoji en el contenido de la historia
+                    twemoji.parse(storyContent, {
+                        folder: 'svg',
+                        ext: '.svg'
+                    });
+                    
+                    // Hacer que los personajes flotantes reboten para celebrar
+                    const floaters = document.querySelectorAll('.character-floater');
+                    floaters.forEach(floater => {
+                        floater.classList.add('character-bounce');
+                        setTimeout(() => {
+                            floater.classList.remove('character-bounce');
+                        }, 3000);
+                    });
+                    
+                    // Scroll a la historia
+                    storyContainer.scrollIntoView({ behavior: 'smooth' });
+                }, 2000); // Simular tiempo de carga
+            }
+            
+            // Event Listeners
+            generateBtn.addEventListener('click', generateStory);
+            randomBtn.addEventListener('click', generateRandomStory);
+            newStoryBtn.addEventListener('click', function() {
+                storyContainer.style.display = 'none';
+                formContainer.style.display = 'block';
+                window.scrollTo({ top: formContainer.offsetTop - 50, behavior: 'smooth' });
+            });
+            
+            // Hacer que las imágenes de los personajes flotantes sean interactivas
+            const characterFloaters = document.querySelectorAll('.character-floater');
+            characterFloaters.forEach(floater => {
+                floater.addEventListener('click', function() {
+                    this.classList.toggle('character-bounce');
+                    setTimeout(() => {
+                        this.classList.remove('character-bounce');
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
